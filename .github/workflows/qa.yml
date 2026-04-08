@@ -5,7 +5,7 @@ on:
     branches: [main, master]
   pull_request:
     branches: [main, master]
-  workflow_dispatch:       # allows manual trigger from GitHub UI
+  workflow_dispatch:
 
 jobs:
   test:
@@ -33,15 +33,11 @@ jobs:
         run: mkdir -p reports
 
       - name: Run smoke tests
-        run: |
-          pytest -m smoke --browser chromium --headed=false \
-            --html=reports/smoke-report.html --self-contained-html -v
+        run: pytest -m smoke --browser chromium -v --html=reports/smoke-report.html --self-contained-html
 
       - name: Run full regression suite
         if: always()
-        run: |
-          pytest --browser chromium --headed=false \
-            --html=reports/full-report.html --self-contained-html -v
+        run: pytest --browser chromium -v --html=reports/full-report.html --self-contained-html
 
       - name: Upload HTML reports
         if: always()
