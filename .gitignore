@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+venv/
+.venv/
+*.egg-info/
+
+# Pytest / Playwright
+.pytest_cache/
+reports/
+test-results/
+playwright/.cache/
